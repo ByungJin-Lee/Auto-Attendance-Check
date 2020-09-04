@@ -1,18 +1,21 @@
 var colorControl = document.querySelector("#colorControl");
+window.onload = function(){
+    chrome.storage.sync.get(function(data){
+        colorControl.value = data.userColor;         
+        changeBackground();
+    })    
+}
 
-colorControl.addEventListener("change",function(){  
-    chrome.tabs.executeScript({
-        code: 'document.querySelector("body")'
-    }, function(result){
-        result[0].style.background = "#000000";
-    });      
+//use chrome storage to save user config
+colorControl.addEventListener("change",function(){          
+    changeBackground();
+    chrome.storage.sync.set({
+        userColor:colorControl.value
+    });    
 });
 
-
-/* function hello(){    
-    new Twitch.Player("main-embed", {
-        channel: "erenjjing",
-        width: 400,
-        height: 180
-    });
-} */
+function changeBackground(){
+    chrome.tabs.executeScript({
+        code: 'document.querySelector("body").style.background = "'+colorControl.value+'";'
+    }); 
+}
