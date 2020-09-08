@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
-    <link rel="stylesheet" href="popup.css" type="text/css">    
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css" type="text/css">
     <script defer src="popup.js"></script>
     <title>Document</title>
 </head>
-<body>    
-    <header>Control</header>
+<body>
+    <br>
+    <header>입&middot;퇴실 자동화</header>    
     <div class="box">
-        <div class="item">
-            BodyColor-(Background)
-            <input type="color" name="s" id="colorControl">
-        </div>        
+        <span>! 채팅창을 킨 후, 10초 뒤 프로그램을 실행해주세요.</span><br>
+        <div class="item">                                  
+            <div id="Running" value="">Running</div><div id="reset">Reset</div><br>
+            <input type="text" name="" id="nameBox" placeholder="name">
+        </div>
+        <div class="display">
+            <div class="item">Enter <span class="enter"></span></div>
+            <div class="item">Exit <span class="exit"></span></div>            
+        </div>
     </div>
-    
+
 </body>
 </html>

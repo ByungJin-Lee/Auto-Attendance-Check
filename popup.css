@@ -1,27 +1,72 @@
 body{
     margin:0;
     padding:0;
-    width:480px;
-    min-height: 300px;       
-    border:3px solid #ba68c8;
+    width:450px;
+    min-height: 280px;       
+    background-color:#89e7ff;
 }
 header{
     text-align:center;
     line-height: 30px;
-    height: 30px;
-    background:#ba68c8;
-    color:#fff;
+    height: 30px;    
+    color:#000;
     font-size:25px;
 }
 .box{
-    width:460px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:430px;
+    height:200px;
     padding:10px;
 }
-.box .item{
-    font-size:16px;
-    font-weight: bold;
+.box #Running{
+    display:inline-block;
+    line-height:20px;
+    height: 20px;
+    width:100px;
+    border:1px ridge black;
+    font-size:15px;
+    text-align:center;
+    cursor: pointer;
 }
-.box .item input{    
-    position: relative;
-    top:3px;
+.box #reset{    
+    display:inline-block;
+    line-height:20px;
+    height: 20px;
+    width:100px;
+    border:1px ridge black;
+    font-size:15px;
+    text-align:center;
+    background-color:#ffff00;
+    cursor: pointer;
+}
+.box #nameBox{
+    width:197px;
+    margin-top:5px;
+}
+.display{
+    margin-top:15px;
+    width:200px;
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+}
+.display .item{
+    display:flex;
+    align-items: center;
+    justify-content:space-around;
+    width:70px;
+    height:25px;
+    border:1px solid black;
+    background:black;
+    color:white;
+}
+.display .item span{
+    display:block;
+    width:28px;
+    height:17px;
+    border:1px solid #fff;
+    text-align:center;
 }
