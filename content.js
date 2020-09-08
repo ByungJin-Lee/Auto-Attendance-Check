@@ -1,6 +1,4 @@
 chrome.runtime.onMessage.addListener(function(request){
-    var name = request.name;
-    chrome.storage.sync.set({name: name});
     var chatList = document.querySelector(".ts-message-list");
     var click = new MouseEvent("click", {
         bubbles: true,
@@ -23,10 +21,10 @@ chrome.runtime.onMessage.addListener(function(request){
 
         if(text.indexOf("출석") >= 0){
             chrome.storage.sync.get(function(result){
-                if(!result.enter){
+                if(!result.enter && !result.stop){
                     var input = document.querySelector(".cke_enable_context_menu div");
                     var clickInput = document.querySelector("#send-message-button");                                   
-                    input.textContent = name + " 출석";                                        
+                    input.textContent = result.name + " 출석";                                        
                     clickInput.dispatchEvent(click);
                 }
             });
@@ -35,10 +33,10 @@ chrome.runtime.onMessage.addListener(function(request){
 
         if(text.indexOf("퇴실") >= 0){
             chrome.storage.sync.get(function(result){
-                if(!result.exit){               
+                if(!result.exit && !result.stop){               
                     var input = document.querySelector(".cke_enable_context_menu div");
                     var clickInput = document.querySelector("#send-message-button");                         
-                    input.textContent = name + " 퇴실";                                        
+                    input.textContent = result.name + " 퇴실";                                        
                     clickInput.dispatchEvent(click);
                 }
             });

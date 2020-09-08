@@ -15,16 +15,17 @@ RunningBtn.addEventListener("click",function(){
     return;
   }
   RunningBtn.value = !RunningBtn.value;
+  chrome.storage.sync.set({name: nameBox.value});
   if(RunningBtn.value)
   {   
-    
+    chrome.storage.sync.set({stop:false});
   }
   else
   {
-    chrome.storage.sync.set({running:false, exit:false, enter:false});
+    chrome.storage.sync.set({running:false, exit:false, enter:false, stop:true});
   }
   chrome.tabs.query(par, function(tabs){
-    chrome.tabs.sendMessage(tabs[0].id, {Run: RunningBtn.value, name: nameBox.value});      
+    chrome.tabs.sendMessage(tabs[0].id, {Run: RunningBtn.value});      
   });
   
   changeColor(RunningBtn);
@@ -34,12 +35,13 @@ resetbtn.addEventListener("click", function(){
     name: "",
     running: false,
     enter: false,
-    exit:false
+    exit:false,
+    stop: false
   });
   loadinfo();
 });
 
-window.addEventListener("load",function(){  
+window.addEventListener("load",function(){    
   loadinfo();
 })
 
