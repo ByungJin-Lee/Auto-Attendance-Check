@@ -18,37 +18,34 @@ chrome.runtime.onMessage.addListener(function(request){
         var lastItem = listItem[listItem.length-1];
         var text = lastItem.querySelector(".message-body-content div").textContent;
         
-
-        if(text.indexOf("출석") >= 0){
-            chrome.storage.sync.get(function(result){
+        chrome.storage.sync.get(function(result){
+            if(text.indexOf(result.enterWord) >= 0){            
                 if(!result.enter && !result.stop){
                     var input = document.querySelector(".cke_enable_context_menu div");
-                    var clickInput = document.querySelector("#send-message-button");                                   
-                    input.textContent = result.name + " 출석";                                        
+                    var clickInput = document.querySelector("#send-message-button");
+                    input.textContent = result.name + " " + result.enterWord;
                     clickInput.dispatchEvent(click);
-                }
-            });
-            chrome.storage.sync.set({enter:true});
-        }
-
-        if(text.indexOf("퇴실") >= 0){
-            chrome.storage.sync.get(function(result){
+                    chrome.storage.sync.set({enter:true});
+                }                        
+            }
+    
+            if(text.indexOf(result.exitWord) >= 0){            
                 if(!result.exit && !result.stop){               
                     var input = document.querySelector(".cke_enable_context_menu div");
                     var clickInput = document.querySelector("#send-message-button");                         
-                    input.textContent = result.name + " 퇴실";                                        
+                    input.textContent = result.name + " " + result.exitWord;
                     clickInput.dispatchEvent(click);
-                }
-            });
-            chrome.storage.sync.set({exit:true});
-        }
+                    chrome.storage.sync.set({exit:true});
+                }                        
+            }
+        });        
     }
 
     if(request.Run){
         console.log("!Start Program");
         alert("Cognize Messagebox, Start Program");
         chrome.storage.sync.set({running: true});
-        chatList.addEventListener("scroll", work);
+        chatList.addEventListener("DOMSubtreeModified", work);
     }
     else{
         chatList.removeEventListener("scroll",work);

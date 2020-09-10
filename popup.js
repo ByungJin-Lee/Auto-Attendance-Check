@@ -8,6 +8,17 @@ var nameBox = document.querySelector("#nameBox");
 var enter = document.querySelector(".enter");
 var exit = document.querySelector(".exit");
 var resetbtn = document.querySelector("#reset");
+var savebtn = document.querySelector("#save");
+var enterWord = document.querySelector("#enterWord");
+var exitWord = document.querySelector("#exitWord");
+
+savebtn.addEventListener("click",function(){
+  chrome.storage.sync.set({
+    name: nameBox.value,    
+    enterWord: enterWord.value,
+    exitWord: exitWord.value,
+  });  
+})
 
 RunningBtn.addEventListener("click",function(){
   if(nameBox.value == ""){
@@ -15,7 +26,11 @@ RunningBtn.addEventListener("click",function(){
     return;
   }
   RunningBtn.value = !RunningBtn.value;
-  chrome.storage.sync.set({name: nameBox.value});
+  chrome.storage.sync.set({
+    name: nameBox.value,    
+    enterWord: enterWord.value,
+    exitWord: exitWord.value
+  });
   if(RunningBtn.value)
   {   
     chrome.storage.sync.set({stop:false});
@@ -33,6 +48,8 @@ RunningBtn.addEventListener("click",function(){
 resetbtn.addEventListener("click", function(){
   chrome.storage.sync.set({
     name: "",
+    enterWord: "",
+    exitWord: "",
     running: false,
     enter: false,
     exit:false,
@@ -51,6 +68,8 @@ var loadinfo = function(){
     changeColor(enter);
     exit.textContent = exit.value = result.exit;
     changeColor(exit);
+    enterWord.value = result.enterWord;
+    exitWord.value = result.exitWord;
     RunningBtn.value = result.running;
     changeColor(RunningBtn);
     nameBox.value = result.name;

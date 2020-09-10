@@ -2,13 +2,13 @@ body{
     margin:0;
     padding:0;
     width:450px;
-    min-height: 280px;       
+    min-height: 280px;
     background-color:#89e7ff;
 }
 header{
     text-align:center;
     line-height: 30px;
-    height: 30px;    
+    height: 30px;
     color:#000;
     font-size:25px;
 }
@@ -31,15 +31,28 @@ header{
     text-align:center;
     cursor: pointer;
 }
-.box #reset{    
+.box #reset{
     display:inline-block;
     line-height:20px;
     height: 20px;
-    width:100px;
+    width:50px;
     border:1px ridge black;
     font-size:15px;
     text-align:center;
     background-color:#ffff00;
+    cursor: pointer;
+}
+.box #save{
+    display: inline-block;
+    display:inline-block;
+    line-height:20px;
+    height: 20px;
+    width:50px;
+    border:1px ridge black;
+    font-size:15px;
+    text-align:center;
+    background-color:#0000ff;
+    color:#fff;
     cursor: pointer;
 }
 .box #nameBox{
@@ -53,6 +66,10 @@ header{
     align-items:center;
     justify-content: space-around;
 }
+.display .column{
+  display:flex;
+  flex-direction: column;
+}
 .display .item{
     display:flex;
     align-items: center;
@@ -61,7 +78,7 @@ header{
     height:25px;
     border:1px solid black;
     background:black;
-    color:white;
+    color:white;    
 }
 .display .item span{
     display:block;
